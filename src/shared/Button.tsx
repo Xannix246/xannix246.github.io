@@ -14,7 +14,11 @@ const Button = ({ children, className, disabled, ...props }: Button) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <HeadlessButton className={clsx(className, "")} disabled={disabled} {...props}>
+    <HeadlessButton
+      className={clsx(className, theme === "modern-light" && "btn-light", theme === "modern-dark" && "btn-dark")}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </HeadlessButton>
   );

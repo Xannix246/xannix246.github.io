@@ -1,9 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  
+  --color-blue: #6ea2bf;
+  --color-red: #ad4433;
+  --color-pink: #d78d7c;
+  --color-yellow: #ffbd2f;
+  --color-green: #6a902b;
+  --color-dark-green: #405819;
 }
 
 @layer base {
+  button {
+    @apply outline-0 cursor-pointer transform transition duration-300 p-2.5 justify-center flex w-fit rounded-full disabled:cursor-not-allowed;
+  }
 
+  .btn-dark {
+    @apply bg-black hover:bg-gray-600;
+  }
+
+  .btn-light {
+    @apply bg-gray-200 hover:bg-gray-300;
+  }
 }

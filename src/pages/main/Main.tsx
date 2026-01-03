@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <div
       className={clsx(
-        "flex flex-col w-full h-full",
+        "flex flex-col w-full h-full gap-16",
         "transition duration-300",
         theme === "modern-light" && "bg-blue-300 text-black",
         theme === "modern-dark" && "bg-gray-900 text-white",
@@ -17,7 +17,7 @@ const Main = () => {
     >
       <ThemeContext value={theme}>
         <h1 className="text-4xl uppercase">hello world!</h1>
-        <div className="flex flex-col w-fit">
+        <div className="flex flex-col w-fit gap-2">
           <Button onClick={() => setTheme("modern-dark")}>Dark theme</Button>
           <Button onClick={() => setTheme("modern-light")}>Light theme</Button>
         </div>
