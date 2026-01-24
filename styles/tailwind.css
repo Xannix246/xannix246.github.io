@@ -1,12 +1,31 @@
+@import "./fonts.css";
 @import "tailwindcss";
 
 @theme {
-  --color-blue: #6ea2bf;
-  --color-red: #ad4433;
-  --color-pink: #d78d7c;
+  --color-blue: #31a8e9;
+  --color-blue-tone: #3b9ace;
+  --color-red: #e03318;
+  --color-red-tone: #b4301c;
+  --color-pink: #e95fc6;
+  --color-pink-tone: #b93f9b;
+  --color-purple: #af50e6;
+  --color-purple-tone: #6f2e94;
   --color-yellow: #ffbd2f;
-  --color-green: #6a902b;
-  --color-dark-green: #405819;
+  --color-orange: #ff8d2f;
+  --color-green: #7ab915;
+  --color-dark-green: #405321;
+  
+  --color-light: #eeeeee;
+  --color-gray-100: #e4e4e4;
+  --color-gray-200: #d8d7d7;
+  --color-gray-300: #cacaca;
+  --color-gray-400: #bbbaba;
+  --color-gray-500: #aaaaaa;
+  --color-gray-600: #9b9a9a;
+  --color-gray-700: #757575;
+  --color-gray-800: #555555;
+  --color-gray-900: #3a3a3a;
+  --color-dark: #2c2c2c;
 }
 
 @layer base {
@@ -15,10 +34,18 @@
   }
 
   .btn-dark {
-    @apply bg-black hover:bg-gray-600;
+    @apply bg-dark hover:bg-gray-800 shadow-md;
   }
 
   .btn-light {
-    @apply bg-gray-200 hover:bg-gray-300;
+    @apply bg-light hover:bg-gray-300 shadow-md;
+  }
+
+  .container-default {
+    @apply bg-white/5 rounded-4xl backdrop-blur-md border border-white/30 overflow-clip relative p-8;
+  }
+
+  a {
+    @apply hover:text-[#8c41d3] font-medium cursor-pointer transform duration-150;
   }
 }

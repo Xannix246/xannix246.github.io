@@ -15,7 +15,11 @@ const Button = ({ children, className, disabled, ...props }: Button) => {
 
   return (
     <HeadlessButton
-      className={clsx(className, theme === "modern-light" && "btn-light", theme === "modern-dark" && "btn-dark")}
+      className={clsx(
+        className,
+        theme === "modern-light" && "btn-light text-black",
+        theme === "modern-dark" && "btn-dark text-white",
+      )}
       disabled={disabled}
       {...props}
     >
