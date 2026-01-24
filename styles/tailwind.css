@@ -46,8 +46,8 @@
   }
 
   a {
-    @apply bg-white 
-      hover:bg-linear-90 from-[#dd517d] via-[#ff5233] to-[#ffa733] bg-clip-text text-transparent
+    @apply bg-white hover:text-transparent
+      hover:bg-linear-90 from-[#dd517d] via-[#ff5233] to-[#ffa733] bg-clip-text
       font-bold cursor-pointer
       transform duration-300;
   }

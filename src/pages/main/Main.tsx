@@ -3,8 +3,18 @@ import Container from "../../shared/Container";
 import Header from "../../widgets/Header";
 import Footer from "../../widgets/Footer";
 import ImageContainer from "../../shared/ImageContainer";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useRef, useState } from "react";
 
 const Main = () => {
+  const [currentY, setCurrentY] = useState(0);
+  const scrollY = useScroll().scrollY;
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("Page scroll: ", latest);
+    setCurrentY(latest);
+  });
+
   return (
     <div className={clsx("flex flex-col place-items-center w-full text-white", "transition duration-300")}>
       <Header />
@@ -17,7 +27,7 @@ const Main = () => {
             src="/assets/images/image1.png"
             className="max-w-90 group"
             decorations={
-              <div>
+              <div className="relative w-full h-full rounded-4xl overflow-clip">
                 <div className="absolute -bottom-32 group-hover:bottom-10 left-10 size-32 bg-[#f3114a]/30 shadow-md transform duration-300 group-hover:rotate-45" />
                 <div className="absolute -bottom-32 group-hover:bottom-5 left-5 size-32 bg-[#ce4217]/40 shadow-md transform duration-300 group-hover:rotate-12" />
                 <div className="absolute -bottom-32 group-hover:bottom-0 size-32 bg-[#f39111]/50 shadow-md transform duration-300" />
@@ -35,7 +45,15 @@ const Main = () => {
         </div>
 
         <div className="flex flex-col gap-8 my-16">
-          <h2 className="text-4xl font-bitcount">Let me to tell about me a bit</h2>
+          <div className="relative">
+            <motion.div
+              className="rotate-6 w-25 h-10 absolute bg-[#ff6600]/50 top-0 left-52 -z-5"
+              animate={{
+                scaleX: currentY > 900 ? "100%" : 0,
+              }}
+            />
+            <h2 className="text-4xl font-bitcount">Let me to tell about me a bit</h2>
+          </div>
           <div className="flex gap-8">
             <Container image={<p className="text-[200px] absolute -bottom-30 -left-20">✌️</p>}>
               Hello, I&apos;m Albert and I was born in Karelia, Russia
@@ -52,19 +70,52 @@ const Main = () => {
         </div>
 
         <div className="flex flex-col gap-8 my-16">
-          <h2 className="text-4xl font-bitcount text-right">My projects</h2>
+          <div className="relative">
+            <motion.div
+              className="-rotate-4 w-45 h-10 absolute bg-[#ff0055]/50 top-0 right-0 -z-5"
+              animate={{
+                scaleX: currentY > 1800 ? "100%" : 0,
+              }}
+            />
+            <h2 className="text-4xl font-bitcount text-right">My projects</h2>
+          </div>
           <div>
             <Container className="">Something something</Container>
           </div>
         </div>
 
         <div className="flex flex-col gap-8 my-16">
-          <h2 className="text-4xl font-bitcount text-center">My links :o</h2>
+          <div className="place-items-center">
+            <div className="relative w-fit">
+              <motion.div
+                className="rotate-4 w-30 h-10 absolute bg-[#7700ff]/50 top-0 left-14 -z-5"
+                animate={{
+                  scaleX: currentY > 2200 ? "100%" : 0,
+                }}
+              />
+              <h2 className="text-4xl font-bitcount w-fit">My links :o</h2>
+            </div>
+          </div>
           <div className="grid gap-4 grid-cols-2 text-xl font-bold">
-            <Container className="col-span-2 text-center">Discord</Container>
-            <Container className="text-center">Telegram</Container>
-            <Container className="text-center">Steam</Container>
-            <Container className="text-center">Github</Container>
+            <Container className="col-span-2 text-center">Discord: xannix_8248</Container>
+            <Container className="text-center">
+              <a href="https://t.me/Xannix_8248" className="text-blue-400 hover:text-transparent underline">
+                Telegram
+              </a>
+            </Container>
+            <Container className="text-center">
+              <a
+                href="https://steamcommunity.com/id/xannix_8248"
+                className="text-blue-400 hover:text-transparent underline"
+              >
+                Steam
+              </a>
+            </Container>
+            <Container className="text-center">
+              <a href="https://github.com/Xannix246" className="text-blue-400 hover:text-transparent underline">
+                Github
+              </a>
+            </Container>
             <Container className="text-center">Email: some-email@mail.com</Container>
           </div>
         </div>
