@@ -4,9 +4,12 @@ import Header from "../../widgets/Header";
 import Footer from "../../widgets/Footer";
 import ImageContainer from "../../shared/ImageContainer";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Text } from "../../shared/Text";
 
 const Main = () => {
+  const { t, i18n } = useTranslation();
   const [currentY, setCurrentY] = useState(0);
   const scrollY = useScroll().scrollY;
 
@@ -20,9 +23,11 @@ const Main = () => {
       <Header />
 
       <div className="flex flex-col p-4 gap-16 max-w-6xl h-750">
-        <h1 className="font-bitcount w-full text-6xl text-center my-16">Welcome to my some awesome website!</h1>
+        <Text as="h1" className="w-full text-6xl text-center my-16" useDots={true}>
+          {t("welcome")}
+        </Text>
 
-        <div className="flex w-full h-136 gap-8 place-items-center place-content-center my-32">
+        <div className="flex w-full md:min-h-136 gap-8 place-items-center place-content-center my-32">
           <ImageContainer
             src="/assets/images/image1.png"
             className="max-w-90 group"
@@ -39,20 +44,29 @@ const Main = () => {
             }
           />
           <div>
-            <h2 className="font-bitcount text-4xl w-64">Meet IceStorm :)</h2>
-            <h3 className="text-xl ml-5">P.S. I just need to place something here, so...</h3>
+            <Text as="h2" className="text-4xl w-70" useDots={true}>
+              {t("some-title")}
+            </Text>
+            <Text as="h3" className="text-xl ml-5 w-105">
+              {t("some-message")}
+            </Text>
           </div>
         </div>
 
         <div className="flex flex-col gap-8 my-16">
           <div className="relative">
             <motion.div
-              className="rotate-6 w-25 h-10 absolute bg-[#ff6600]/50 top-0 left-52 -z-5"
+              className={clsx(
+                "absolute bg-[#ff6600]/50 h-10 top-0 -z-5",
+                i18n.language === "en" ? "rotate-6 w-25 left-52" : "rotate-2 w-62 left-59",
+              )}
               animate={{
                 scaleX: currentY > 900 ? "100%" : 0,
               }}
             />
-            <h2 className="text-4xl font-bitcount">Let me to tell about me a bit</h2>
+            <Text className="text-4xl" id="about" useDots={true}>
+              {t("about-title")}
+            </Text>
           </div>
           <div className="flex gap-8">
             <Container image={<p className="text-[200px] absolute -bottom-30 -left-20">✌️</p>}>
@@ -63,24 +77,34 @@ const Main = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aperiam, neque in voluptatem quas sunt
               quisquam ipsam facere, nulla ratione aliquid nostrum ducimus praesentium assumenda commodi beatae
               expedita! Quae, excepturi.
+              <Text as="p">{t("about-me")}</Text>
             </Container>
             <ImageContainer src="/assets/images/image2.png" className="min-h-136 min-w-90" />
           </div>
-          <Container>Some hobbies</Container>
+          <Container>
+            <Text as="p">{t("some-hobbies")}</Text>
+          </Container>
         </div>
 
         <div className="flex flex-col gap-8 my-16">
           <div className="relative">
             <motion.div
-              className="-rotate-4 w-45 h-10 absolute bg-[#ff0055]/50 top-0 right-0 -z-5"
+              className={clsx(
+                "absolute bg-[#ff0055]/50 top-0 -z-5 -rotate-4 h-10",
+                i18n.language === "en" ? "w-45 right-0" : "w-47 -right-2",
+              )}
               animate={{
                 scaleX: currentY > 1800 ? "100%" : 0,
               }}
             />
-            <h2 className="text-4xl font-bitcount text-right">My projects</h2>
+            <Text as="h2" className="text-4xl text-right" id="projects" useDots={true}>
+              {t("projects-title")}
+            </Text>
           </div>
           <div>
-            <Container className="">Something something</Container>
+            <Container className="">
+              <Text as="p">{t("projects-desc")}</Text>
+            </Container>
           </div>
         </div>
 
@@ -88,12 +112,18 @@ const Main = () => {
           <div className="place-items-center">
             <div className="relative w-fit">
               <motion.div
-                className="rotate-4 w-30 h-10 absolute bg-[#7700ff]/50 top-0 left-14 -z-5"
+                // className="rotate-4 w-30 h-10 absolute bg-[#7700ff]/50 top-0 left-14 -z-5"
+                className={clsx(
+                  "absolute bg-[#7700ff]/50 h-10 top-0 -z-5",
+                  i18n.language === "en" ? "rotate-4 w-30 left-14" : "rotate-4 w-40 left-22",
+                )}
                 animate={{
                   scaleX: currentY > 2200 ? "100%" : 0,
                 }}
               />
-              <h2 className="text-4xl font-bitcount w-fit">My links :o</h2>
+              <Text as="h2" className="text-4xl font-bitcount w-fit" id="links" useDots={true}>
+                {t("links-title")}
+              </Text>
             </div>
           </div>
           <div className="grid gap-4 grid-cols-2 text-xl font-bold">

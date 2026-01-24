@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tabs from "../shared/Tabs";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [language, setLanguage] = useState<Lang>("en");
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    (async () => {
+      await i18n.changeLanguage(language);
+    })();
+  }, [language]);
 
   const tabs = [
     {
@@ -21,9 +29,9 @@ const Header = () => {
         <div className="flex gap-16">
           <h1>some header</h1>
           <div className="flex gap-4">
-            <a>About me</a>
-            <a>My projects</a>
-            <a>Links</a>
+            <a href="#about">{t("about-me")}</a>
+            <a href="#projects">{t("my-projects")}</a>
+            <a href="#links">{t("links")}</a>
           </div>
         </div>
         <Tabs tab={language} setTab={setLanguage} tabs={tabs} />

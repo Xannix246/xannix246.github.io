@@ -3,6 +3,7 @@ import { ThemeContext } from "../src/contexts/ThemeContext";
 import Background from "../src/entities/Background";
 import "../styles/fonts.css";
 import "../styles/tailwind.css";
+import "../i18n/i18n";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>("modern-light");
