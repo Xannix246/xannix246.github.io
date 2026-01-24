@@ -1,8 +1,6 @@
-/* eslint-disable prettier/prettier */
 import { Tab, TabGroup, TabList } from "@headlessui/react";
 import clsx from "clsx";
-import { Dispatch, Ref, SetStateAction, useEffect, useRef, useState } from "react";
-import Container from "./Container";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 type Tab<T> = {
   id: T;
@@ -48,9 +46,14 @@ const Tabs = <T extends string>({ tab, setTab, tabs }: Props<T>) => {
         {tabs.map((curTab, i) => (
           <Tab
             key={i}
-            ref={(el) => {tabRefs.current[i] = el}}
+            ref={(el) => {
+              tabRefs.current[i] = el;
+            }}
             onClick={() => setTab(curTab.id)}
-            className={clsx(tab === curTab.id ? "text-green" : "text-white", "font-semibold z-10 transition duration-300")}
+            className={clsx(
+              tab === curTab.id ? "text-green" : "text-white",
+              "font-semibold z-10 transition duration-300",
+            )}
           >
             {curTab.name}
           </Tab>

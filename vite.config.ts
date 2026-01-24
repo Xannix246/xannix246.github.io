@@ -5,4 +5,9 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [vike(), react(), tailwindcss()],
+  server: {
+    hmr: {
+      overlay: false,
+    },
+  },
 });

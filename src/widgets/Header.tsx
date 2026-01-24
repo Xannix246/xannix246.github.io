@@ -17,12 +17,13 @@ const Header = () => {
 
   return (
     <div className="flex w-full h-16">
-      <header className="w-full fixed top-0 h-16 px-8 text-white flex justify-between place-items-center z-10">
-        <div className="flex gap-6">
+      <header className="w-full fixed top-0 h-16 px-8 text-white bg-linear-0 from-0% to-black flex justify-between place-items-center z-10">
+        <div className="flex gap-16">
           <h1>some header</h1>
           <div className="flex gap-4">
             <a>About me</a>
             <a>My projects</a>
+            <a>Links</a>
           </div>
         </div>
         <Tabs tab={language} setTab={setLanguage} tabs={tabs} />

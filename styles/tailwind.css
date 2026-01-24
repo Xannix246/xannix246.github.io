@@ -46,6 +46,18 @@
   }
 
   a {
-    @apply hover:text-[#8c41d3] font-medium cursor-pointer transform duration-150;
+    @apply bg-white 
+      hover:bg-linear-90 from-[#dd517d] via-[#ff5233] to-[#ffa733] bg-clip-text text-transparent
+      font-bold cursor-pointer
+      transform duration-300;
   }
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
