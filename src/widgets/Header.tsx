@@ -24,7 +24,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="flex w-full h-16">
+    <div className="flex w-full h-16 z-20">
       <header className="w-full fixed top-0 h-16 px-8 text-white bg-linear-0 from-0% to-black flex justify-between place-items-center z-10">
         <div className="flex gap-16">
           <h1>some header</h1>

@@ -22,7 +22,7 @@ const Main = () => {
     <div className={clsx("flex flex-col place-items-center w-full text-white", "transition duration-300")}>
       <Header />
 
-      <div className="flex flex-col p-4 gap-16 max-w-6xl h-750">
+      <div className="flex flex-col p-4 gap-16 max-w-6xl">
         <Text as="h1" className="w-full text-6xl text-center my-16" useDots={true}>
           {t("welcome")}
         </Text>
@@ -30,7 +30,7 @@ const Main = () => {
         <div className="flex w-full md:min-h-136 gap-8 place-items-center place-content-center my-32">
           <ImageContainer
             src="/assets/images/image1.png"
-            className="max-w-90 group"
+            className="max-w-90 group min-h-136"
             decorations={
               <div className="relative w-full h-full rounded-4xl overflow-clip">
                 <div className="absolute -bottom-32 group-hover:bottom-10 left-10 size-32 bg-[#f3114a]/30 shadow-md transform duration-300 group-hover:rotate-45" />
@@ -82,7 +82,7 @@ const Main = () => {
             <ImageContainer src="/assets/images/image2.png" className="min-h-136 min-w-90" />
           </div>
           <Container>
-            <Text as="p">{t("some-hobbies")}</Text>
+            <Text as="p">{t("hobbies")}</Text>
           </Container>
         </div>
 

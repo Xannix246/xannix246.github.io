@@ -9,5 +9,6 @@ export default defineConfig({
     hmr: {
       overlay: false,
     },
+    host: "0.0.0.0",
   },
 });
