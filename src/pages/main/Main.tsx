@@ -112,7 +112,6 @@ const Main = () => {
           <div className="place-items-center">
             <div className="relative w-fit">
               <motion.div
-                // className="rotate-4 w-30 h-10 absolute bg-[#7700ff]/50 top-0 left-14 -z-5"
                 className={clsx(
                   "absolute bg-[#7700ff]/50 h-10 top-0 -z-5",
                   i18n.language === "en" ? "rotate-4 w-30 left-14" : "rotate-4 w-40 left-22",

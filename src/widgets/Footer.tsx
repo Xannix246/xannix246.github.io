@@ -1,9 +1,8 @@
-import { footer } from "motion/react-client";
 import { useTranslation } from "react-i18next";
 import { Text } from "../shared/Text";
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="w-full flex justify-center mt-16">
@@ -32,7 +31,7 @@ const Footer = () => {
           <Text as="p" useDots={true}>
             Github source page:
           </Text>
-          <Text as="a" href="https://github.com/Xannix246/my-page.github.io">
+          <Text as="a" className="h-fit w-fit" href="https://github.com/Xannix246/my-page.github.io">
             Click
           </Text>
         </div>
