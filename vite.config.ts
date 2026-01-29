@@ -5,10 +5,11 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [vike(), react(), tailwindcss()],
-  server: {
-    hmr: {
-      overlay: false,
-    },
-    host: "0.0.0.0",
-  },
+  base: "/",
+  // server: {
+  //   hmr: {
+  //     overlay: false,
+  //   },
+  //   host: "0.0.0.0",
+  // },
 });
