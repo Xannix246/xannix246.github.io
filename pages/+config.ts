@@ -6,7 +6,7 @@ import vikeReact from "vike-react/config";
 
 export default {
   // https://vike.dev/head-tags
-  title: "Test website Xerox xd",
+  title: "Xannix's site",
   description: "Some awesome site",
   prerender: true,
 
