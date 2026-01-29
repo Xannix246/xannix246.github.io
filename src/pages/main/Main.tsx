@@ -44,7 +44,7 @@ const Main = () => {
 
         <div className="flex flex-col md:flex-row w-full md:min-h-136 gap-8 place-items-center place-content-center my-32">
           <ImageContainer
-            src="/assets/images/image1.png"
+            src="./assets/images/image1.png"
             className="w-90 md:w-auto md:max-w-90 group min-h-136"
             decorations={<p className="text-[150px] absolute -bottom-15 -right-15">🤗</p>}
           />
@@ -83,7 +83,7 @@ const Main = () => {
                 {t("about-desc")}
               </Text>
             </Container>
-            <ImageContainer src="/assets/images/image2.png" className="min-h-136 min-w-90" />
+            <ImageContainer src="./assets/images/image2.png" className="min-h-136 min-w-90" />
           </div>
           <div className="flex flex-col md:flex-row-reverse gap-8 min-h-150 md:min-h-90">
             <Container>
@@ -91,7 +91,7 @@ const Main = () => {
                 {t("hobbies")}
               </Text>
             </Container>
-            <ImageContainer src="/assets/images/image3.jpg" className="min-w-[50%]" />
+            <ImageContainer src="./assets/images/image3.jpg" className="min-w-[50%]" />
           </div>
         </div>
 
@@ -130,7 +130,7 @@ const Main = () => {
                 {t("project2")}
               </Text>
             </Container>
-            <ImageContainer src="/assets/images/image5.png" className="min-w-[50%]" />
+            <ImageContainer src="./assets/images/image5.png" className="min-w-[50%]" />
           </div>
         </div>
 
