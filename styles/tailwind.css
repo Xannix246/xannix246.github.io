@@ -45,7 +45,7 @@
     @apply bg-white/5 rounded-4xl backdrop-blur-md border border-white/30 overflow-clip relative p-8;
   }
 
-  a {
+  .link {
     @apply bg-white hover:text-transparent
       hover:bg-linear-90 from-[#dd517d] via-[#ff5233] to-[#ffa733] bg-clip-text
       font-bold cursor-pointer

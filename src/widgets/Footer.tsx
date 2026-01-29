@@ -15,13 +15,13 @@ const Footer = () => {
         <div className="p-1 bg-black/80 flex"></div>
         <div className="p-1 bg-black/50 col-span-2 row-span-2 flex flex-col justify-center">
           <Text useDots={true}>Used fonts:</Text>
-          <a href="https://fonts.google.com/specimen/Roboto" className="w-fit">
+          <a href="https://fonts.google.com/specimen/Roboto" className="w-fit link">
             Roboto
           </a>
-          <a href="https://fonts.google.com/specimen/Bitcount+Single" className="w-fit">
+          <a href="https://fonts.google.com/specimen/Bitcount+Single" className="w-fit link">
             Bitcount
           </a>
-          <a href="https://github.com/nzeemin/robotron-dotmatrix-font" className="w-fit">
+          <a href="https://github.com/nzeemin/robotron-dotmatrix-font" className="w-fit link">
             Robotron
           </a>
         </div>
@@ -31,7 +31,7 @@ const Footer = () => {
           <Text as="p" useDots={true}>
             Github source page:
           </Text>
-          <Text as="a" className="h-fit w-fit" href="https://github.com/Xannix246/my-page.github.io">
+          <Text as="a" className="h-fit w-fit link" href="https://github.com/Xannix246/my-page.github.io">
             Click
           </Text>
         </div>

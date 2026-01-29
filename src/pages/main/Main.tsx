@@ -4,14 +4,29 @@ import Header from "../../widgets/Header";
 import Footer from "../../widgets/Footer";
 import ImageContainer from "../../shared/ImageContainer";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Text } from "../../shared/Text";
+import { FaDiscord, FaTelegram, FaSteam, FaGithub } from "react-icons/fa";
 
 const Main = () => {
   const { t, i18n } = useTranslation();
   const [currentY, setCurrentY] = useState(0);
+  const [width, setWidth] = useState(0);
   const scrollY = useScroll().scrollY;
+
+  const handleWindowResize = useCallback(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    handleWindowResize();
+
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [handleWindowResize]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     console.log("Page scroll: ", latest);
@@ -23,31 +38,21 @@ const Main = () => {
       <Header />
 
       <div className="flex flex-col p-4 gap-16 max-w-6xl">
-        <Text as="h1" className="w-full text-6xl text-center my-16" useDots={true}>
+        <Text as="h1" className="w-full text-3xl md:text-6xl text-center my-16" useDots={true}>
           {t("welcome")}
         </Text>
 
-        <div className="flex w-full md:min-h-136 gap-8 place-items-center place-content-center my-32">
+        <div className="flex flex-col md:flex-row w-full md:min-h-136 gap-8 place-items-center place-content-center my-32">
           <ImageContainer
             src="/assets/images/image1.png"
-            className="max-w-90 group min-h-136"
-            decorations={
-              <div className="relative w-full h-full rounded-4xl overflow-clip">
-                <div className="absolute -bottom-32 group-hover:bottom-10 left-10 size-32 bg-[#f3114a]/30 shadow-md transform duration-300 group-hover:rotate-45" />
-                <div className="absolute -bottom-32 group-hover:bottom-5 left-5 size-32 bg-[#ce4217]/40 shadow-md transform duration-300 group-hover:rotate-12" />
-                <div className="absolute -bottom-32 group-hover:bottom-0 size-32 bg-[#f39111]/50 shadow-md transform duration-300" />
-
-                <div className="absolute w-0 h-8 bg-[#df610c]/70 group-hover:w-full transform duration-300" />
-                <div className="absolute mt-5 w-0 h-8 bg-[#dcdf0c]/60 group-hover:w-[80%] transform duration-300" />
-                <div className="absolute mt-3 w-0 h-8 bg-[#a0df0c]/50 group-hover:w-[60%] transform duration-300" />
-              </div>
-            }
+            className="w-90 md:w-auto md:max-w-90 group min-h-136"
+            decorations={<p className="text-[150px] absolute -bottom-15 -right-15">🤗</p>}
           />
           <div>
             <Text as="h2" className="text-4xl w-70" useDots={true}>
               {t("some-title")}
             </Text>
-            <Text as="h3" className="text-xl ml-5 w-105">
+            <Text as="h3" className="text-xl ml-5 md:w-105">
               {t("some-message")}
             </Text>
           </div>
@@ -58,32 +63,36 @@ const Main = () => {
             <motion.div
               className={clsx(
                 "absolute bg-[#ff6600]/50 h-10 top-0 -z-5",
-                i18n.language === "en" ? "rotate-6 w-25 left-52" : "rotate-2 w-62 left-59",
+                i18n.language === "en"
+                  ? "rotate-6 w-25 left-52"
+                  : width < 512
+                    ? "rotate-2 w-62 -left-1 top-10"
+                    : "rotate-2 w-62 left-59",
               )}
               animate={{
-                scaleX: currentY > 900 ? "100%" : 0,
+                scaleX: currentY > (width < 868 ? 1000 : 800) ? "100%" : 0,
               }}
             />
             <Text className="text-4xl" id="about" useDots={true}>
               {t("about-title")}
             </Text>
           </div>
-          <div className="flex gap-8">
-            <Container image={<p className="text-[200px] absolute -bottom-30 -left-20">✌️</p>}>
-              Hello, I&apos;m Albert and I was born in Karelia, Russia
-              <br />
-              and some text
-              <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aperiam, neque in voluptatem quas sunt
-              quisquam ipsam facere, nulla ratione aliquid nostrum ducimus praesentium assumenda commodi beatae
-              expedita! Quae, excepturi.
-              <Text as="p">{t("about-me")}</Text>
+          <div className="flex flex-col md:flex-row gap-8">
+            <Container className="md:min-h-136" image={<p className="text-[200px] absolute -bottom-30 -left-20">✌️</p>}>
+              <Text as="p" className="whitespace-pre-line text-justify">
+                {t("about-desc")}
+              </Text>
             </Container>
             <ImageContainer src="/assets/images/image2.png" className="min-h-136 min-w-90" />
           </div>
-          <Container>
-            <Text as="p">{t("hobbies")}</Text>
-          </Container>
+          <div className="flex flex-col md:flex-row-reverse gap-8 min-h-150 md:min-h-90">
+            <Container>
+              <Text as="p" className="whitespace-pre-line text-justify">
+                {t("hobbies")}
+              </Text>
+            </Container>
+            <ImageContainer src="/assets/images/image3.jpg" className="min-w-[50%]" />
+          </div>
         </div>
 
         <div className="flex flex-col gap-8 my-16">
@@ -94,17 +103,34 @@ const Main = () => {
                 i18n.language === "en" ? "w-45 right-0" : "w-47 -right-2",
               )}
               animate={{
-                scaleX: currentY > 1800 ? "100%" : 0,
+                scaleX: currentY > (width < 868 ? 2200 : 2000) ? "100%" : 0,
               }}
             />
             <Text as="h2" className="text-4xl text-right" id="projects" useDots={true}>
               {t("projects-title")}
             </Text>
           </div>
-          <div>
-            <Container className="">
-              <Text as="p">{t("projects-desc")}</Text>
+          <div className="flex flex-col md:flex-row gap-4 min-h-150 md:min-h-90">
+            <Container>
+              <a href="https://db.betonbrutal.com" className="font-bitcount text-2xl hover:underline">
+                Beton Brutal Database
+              </a>
+              <Text as="p" className="whitespace-pre-line text-justify">
+                {t("project1")}
+              </Text>
             </Container>
+            <ImageContainer src="/assets/images/image4.png" className="min-w-[50%]" />
+          </div>
+          <div className="flex flex-col md:flex-row-reverse gap-4 min-h-150 md:min-h-90">
+            <Container>
+              <a href="https://github.com/Xannix246/BB-Map-Tools" className="font-bitcount text-2xl hover:underline">
+                BB Map Tools
+              </a>
+              <Text as="p" className="whitespace-pre-line text-justify">
+                {t("project2")}
+              </Text>
+            </Container>
+            <ImageContainer src="/assets/images/image5.png" className="min-w-[50%]" />
           </div>
         </div>
 
@@ -117,7 +143,7 @@ const Main = () => {
                   i18n.language === "en" ? "rotate-4 w-30 left-14" : "rotate-4 w-40 left-22",
                 )}
                 animate={{
-                  scaleX: currentY > 2200 ? "100%" : 0,
+                  scaleX: currentY > (width < 868 ? 3200 : 3000) ? "100%" : 0,
                 }}
               />
               <Text as="h2" className="text-4xl font-bitcount w-fit" id="links" useDots={true}>
@@ -125,27 +151,40 @@ const Main = () => {
               </Text>
             </div>
           </div>
-          <div className="grid gap-4 grid-cols-2 text-xl font-bold">
-            <Container className="col-span-2 text-center">Discord: xannix_8248</Container>
-            <Container className="text-center">
-              <a href="https://t.me/Xannix_8248" className="text-blue-400 hover:text-transparent underline">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 text-xl font-bold">
+            <Container className="flex gap-4 justify-center place-items-center" rowSpan="sm:col-span-2">
+              <FaDiscord size={32} className="text-[#2f4df5]" />
+              <p>Discord: xannix_8248</p>
+            </Container>
+            <Container className="flex gap-4 justify-center place-items-center">
+              <FaTelegram size={32} className="text-[#61c0ff]" />
+              <a href="https://t.me/Xannix_8248" className="text-blue-400 hover:text-transparent underline link">
                 Telegram
               </a>
             </Container>
-            <Container className="text-center">
+            <Container className="flex gap-4 justify-center place-items-center">
+              <FaSteam size={32} className="text-[#6577dd]" />
               <a
                 href="https://steamcommunity.com/id/xannix_8248"
-                className="text-blue-400 hover:text-transparent underline"
+                className="text-blue-400 hover:text-transparent underline link"
               >
                 Steam
               </a>
             </Container>
-            <Container className="text-center">
-              <a href="https://github.com/Xannix246" className="text-blue-400 hover:text-transparent underline">
+            <Container className="flex gap-4 justify-center place-items-center">
+              <FaGithub size={32} />
+              <a href="https://github.com/Xannix246" className="text-blue-400 hover:text-transparent underline link">
                 Github
               </a>
             </Container>
-            <Container className="text-center">Email: some-email@mail.com</Container>
+            <Container className="flex justify-center place-items-center">
+              <span>
+                Email:{" "}
+                <a href="mailto:albert.ohrimenko.contact@gmail.com" className="link">
+                  albert.ohrimenko.contact@gmail.com
+                </a>
+              </span>
+            </Container>
           </div>
         </div>
       </div>

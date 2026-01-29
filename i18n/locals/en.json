@@ -5,15 +5,17 @@
 
   "welcome": "Welcome to my some awesome website!", 
 
-  "some-title": "Meet IceStorm :)",
-  "some-message": "P.S. I just need to place something here, so...",
+  "some-title": "Some picture",
+  "some-message": "P.S. I just need to place something here, so... (I will add it later)",
 
   "about-title": "Let me to tell about me a bit",
-  "about-desc": "",
-  "hobbies": "Some hobbies",
+  "about-desc": "Hi, my name is Albert and I was born in Karelia, Russia. I enjoy playing with toys and doing creative things :)\n\nI started programming in 2021, when I had the desire to create my own Discord bot. Nowadays, I am a full-stack developer working on small personal projects, as well as taking part in a couple of team projects.",
+  "hobbies": "In my free time, I enjoy doing various creative activities (for example, creating maps for the game BETON BRUTAL or making collages in Photoshop), developing one of my current projects (such as this website), or learning something new.",
 
   "projects-title": "My projects",
-  "projects-desc": "Something something",
+  "project1": "A website for viewing information about custom Beton Brutal maps, released in October 2025.\n\nThe main tools used were React, Vike, and TailwindCSS, as well as NestJS. The website is still actively maintained by me and continues to grow with new features.",
+  "project2": "An application for editing binary files of custom maps, developed using Tauri.",
+
 
   "links-title": "My links :o",
 

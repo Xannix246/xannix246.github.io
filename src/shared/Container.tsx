@@ -9,6 +9,8 @@ type Container = {
   image?: JSX.Element;
   background?: JSX.Element;
   disableAnimations?: boolean;
+  rowSpan?: string;
+  colSpan?: string;
 };
 
 const getColor = () => {
@@ -25,7 +27,7 @@ const getColor = () => {
   return colors[place];
 };
 
-const Container = ({ children, className, image, background }: Container) => {
+const Container = ({ children, className, image, background, rowSpan, colSpan }: Container) => {
   const [visible, setVisible] = useState(false);
   const [color, setColor] = useState("");
   const ref = useRef<HTMLDivElement>(null);
@@ -48,26 +50,17 @@ const Container = ({ children, className, image, background }: Container) => {
   };
 
   return (
-    <div
-      className={clsx(className, "container-default")}
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseEnter={(e) => {
-        onMouseMove(e);
-        setVisible(true);
-      }}
-      onMouseLeave={() => setVisible(false)}
-    >
+    <div className={clsx("relative overflow-clip rounded-4xl w-full min-h-full", rowSpan, colSpan)}>
       <AnimatePresence>
         {visible && (
           <motion.div
             ref={divRef}
-            className={clsx("fixed flex size-32 -z-5 rounded-full blur-xl", color)}
+            className={clsx("absolute size-32 -z-5 rounded-full blur-xl", color)}
             style={{
               x,
               y,
-              translateX: "-75%",
-              translateY: "-75%",
+              translateX: "-50%",
+              translateY: "-50%",
             }}
             initial={{
               opacity: 0,
@@ -89,9 +82,20 @@ const Container = ({ children, className, image, background }: Container) => {
           />
         )}
       </AnimatePresence>
-      <div>{children}</div>
-      <div className="absolute left-0 bottom-0 blur-xs size-16 -z-10">{image}</div>
-      <div className="absolute left-0 top-0 -z-10 w-full h-full blur-sm">{background}</div>
+      <div
+        className={clsx(className, "container-default h-full")}
+        ref={ref}
+        onMouseMove={onMouseMove}
+        onMouseEnter={(e) => {
+          onMouseMove(e);
+          setVisible(true);
+        }}
+        onMouseLeave={() => setVisible(false)}
+      >
+        {children}
+        <div className="absolute left-0 bottom-0 blur-xs size-16 -z-10">{image}</div>
+        <div className="absolute left-0 top-0 -z-10 w-full h-full blur-sm">{background}</div>
+      </div>
     </div>
   );
 };

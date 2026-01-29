@@ -147,4 +147,3 @@ dist
 # aws-cdk
 .cdk.staging
 cdk.out
-assets/images/image1.png
