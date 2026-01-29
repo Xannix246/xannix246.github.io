@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 const Background = () => {
   const scrollY = useScroll().scrollY;
-  const style = useTransform(scrollY, [0, 3000], [0, -100]);
+  const style = useTransform(scrollY, [0, 3600], [0, -100]);
 
   return (
     <motion.div

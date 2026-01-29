@@ -29,7 +29,7 @@ const Main = () => {
   }, [handleWindowResize]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Page scroll: ", latest);
+    // console.log("Page scroll: ", latest);
     setCurrentY(latest);
   });
 
